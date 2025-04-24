@@ -5,17 +5,48 @@ public class TicketSoporte{
     private static int contador=0;
     private int idTicket;
     private String descripcion;
-    private enum Estado {ABIERTO, ENPROCESO, CERRADO};
-    private Estado estado;
+    private Estado estado = Estado.ABIERTO;
     private LocalDate fechaCreacion;
+    private Usuario usuario;
+    private Tecnico tecnico;
 
      public TicketSoporte(String descripcion) {
         this.descripcion = descripcion;
         this.estado = Estado.ABIERTO;
         this.fechaCreacion = LocalDate.now();
         this.idTicket = ++contador;
-       // idTicket++;
     }
+
+    
+    public TicketSoporte(String descripcion, Usuario usuario) {
+        this.descripcion = descripcion;
+        this.estado = Estado.ABIERTO;
+        this.fechaCreacion = LocalDate.now();
+        this.idTicket = ++contador;
+        this.usuario = usuario;
+    }
+
+    
+
+    public Tecnico getTecnico() {
+        return tecnico;
+    }
+
+
+    public void setTecnico(Tecnico tecnico) {
+        this.tecnico = tecnico;
+    }
+
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
 
     public int getIdTicket() {
         return idTicket;
@@ -71,7 +102,23 @@ public class TicketSoporte{
         System.out.println("Descripción: " + descripcion);
         System.out.println("Estado: " + estado);
         System.out.println("Fecha de creación: " + fechaCreacion);
+        if(usuario != null) {
+            System.out.println("Usuario: " + usuario.getNombre() + " " + usuario.getApellido());
+        } else {
+            System.out.println("Usuario: No asignado");
+        }
         System.out.println("------------------------------");
+        if(tecnico != null) {
+            System.out.println("Técnico asignado: " + tecnico.getNombre() + " " + tecnico.getApellido() );
+        } else {
+            System.out.println("Técnico asignado: No asignado");
+        }
+          System.out.println("------------------------------");
+    }
+
+    public void asignarTecnico(Tecnico tecnico) {
+        this.tecnico = tecnico;
+        this.estado = Estado.ENPROCESO;
     }
 }
 
