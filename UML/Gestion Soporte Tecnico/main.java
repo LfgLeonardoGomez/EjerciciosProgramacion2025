@@ -41,6 +41,7 @@ public class main{
         ticket2.cerrarTicket();
         ticket3.cerrarTicket();
         ticket8.cerrarTicket();
+        
 
        /*  for (TicketSoporte ticket : sistemaSoporte.getTickets()) {
             ticket.mostrarDetalle();         }
